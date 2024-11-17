@@ -1,11 +1,18 @@
 import React from 'react';
+import { useAuthStore } from '../store/useAuthStore';
 
 const LoginForm = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const loading = false;
+  const { login } = useAuthStore();
   return (
-    <form className="space-y-6">
+    <form
+      className="space-y-6"
+      onSubmit={(e) => {
+        e.preventDefault();
+        login({ email, password });
+      }}>
       <div className="">
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
           Email address

@@ -1,5 +1,11 @@
 import React from 'react';
+import { useAuthStore } from '../store/useAuthStore';
 
 export const HomePage = () => {
-  return <div></div>;
+  const { logout } = useAuthStore();
+  return (
+    <div>
+      <button onClick={logout}>Log Out</button>
+    </div>
+  );
 };
