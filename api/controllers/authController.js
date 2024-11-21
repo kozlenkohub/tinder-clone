@@ -3,7 +3,6 @@
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
-import { sendEmail } from '../utils/emailService.js';
 
 // Sign JWT token
 const signToken = (id) => {
