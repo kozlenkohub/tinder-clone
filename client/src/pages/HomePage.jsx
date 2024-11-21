@@ -8,7 +8,7 @@ import SwipeArea from '../components/SwipeArea';
 import SwipeFeedback from '../components/SwipeFeedback';
 import { useAuthStore } from '../store/useAuthStore';
 
-const HomePage = () => {
+export const HomePage = () => {
   const {
     isLoadingUserProfiles,
     getUserProfiles,
