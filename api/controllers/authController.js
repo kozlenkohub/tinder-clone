@@ -26,9 +26,9 @@ const setTokenCookie = (res, token) => {
 
 // Validate signup fields
 const validateSignupFields = (data) => {
-  const { name, email, password, phone, gender } = data;
+  const { name, email, password, gender } = data;
 
-  if (!name || !email || !password || !phone || !gender) {
+  if (!name || !email || !password || !gender) {
     throw new Error('All required fields must be provided.');
   }
 
@@ -48,12 +48,6 @@ const validateSignupFields = (data) => {
   if (!allowedGenders.includes(gender.toLowerCase())) {
     throw new Error('Invalid gender.');
   }
-
-  // Validate phone number
-  const phoneRegex = /^\+?[0-9]{10,15}$/;
-  if (!phoneRegex.test(phone)) {
-    throw new Error('Invalid phone number.');
-  }
 };
 
 // Signup controller
@@ -61,7 +55,7 @@ export const signup = async (req, res) => {
   try {
     validateSignupFields(req.body);
 
-    const { name, email, password, phone, gender } = req.body;
+    const { name, email, password, age, gender, genderPreference } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -74,8 +68,9 @@ export const signup = async (req, res) => {
       name,
       email,
       password,
-      phone,
       gender,
+      age,
+      genderPreference,
     });
 
     // Sign JWT token
